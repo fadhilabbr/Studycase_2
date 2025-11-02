@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Data2_3 {
+public class Struk_2 {
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
