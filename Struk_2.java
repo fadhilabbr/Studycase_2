@@ -12,7 +12,6 @@ public class Struk_2 {
         cetakStruk(data[0], data[1], data[2], hargaTiket, totalBayar);
     }
 
-    // Method untuk input data pemesanan
     public static String[] inputData(Scanner input) {
         String[] data = new String[4]; // [nama, travel, no_telp, harga_tiket]
         System.out.println("MASUKKAN DATA PEMESANAN TIKET FILKOM TRAVEL");
@@ -27,7 +26,6 @@ public class Struk_2 {
         return data;
     }
 
-    // Method untuk mencetak struk pembayaran
     public static void cetakStruk(String nama, String travel, String noTelp, int hargaTiket, int totalBayar) {
         System.out.println("===================================");
         System.out.println("         STRUK PEMBAYARAN");
