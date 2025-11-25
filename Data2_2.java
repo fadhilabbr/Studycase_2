@@ -2,21 +2,6 @@ import java.util.Scanner;
 
 public class Data2_2 {
 
-    // Class untuk menyimpan data penumpangg
-    static class Penumpang {
-        String nama;
-        String noTelp;
-        String alamat;
-
-        Penumpang(String nama, String noTelp, String alamat) {
-            this.nama = nama;
-            this.noTelp = noTelp;
-            this.alamat = alamat;
-        }
-
-       
-    }
-
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
@@ -26,26 +11,31 @@ public class Data2_2 {
 
         System.out.print("MASUKKAN JUMLAH PENUMPANG : ");
         int jumlahPenumpang = input.nextInt();
-        input.nextLine(); 
+        input.nextLine();
 
-        Penumpang[] daftarPenumpang = new Penumpang[jumlahPenumpang];
+        String[] nama = new String[jumlahPenumpang];
+        String[] noTelp = new String[jumlahPenumpang];
+        String[] alamat = new String[jumlahPenumpang];
 
         for (int i = 0; i < jumlahPenumpang; i++) {
             System.out.println("\nMASUKKAN DATA DIRI PENUMPANG KE-" + (i + 1));
-            daftarPenumpang[i] = inputDataPenumpang(input);
+            System.out.print("NAMA     : ");
+            nama[i] = input.nextLine();
+            System.out.print("NO. TELP : ");
+            noTelp[i] = input.nextLine();
+            System.out.print("ALAMAT   : ");
+            alamat[i] = input.nextLine();
         }
 
         input.close();
-    }
 
-    // Method untuk input data penumpang
-    public static Penumpang inputDataPenumpang(Scanner input) {
-        System.out.print("NAMA     : ");
-        String nama = input.nextLine();
-        System.out.print("NO. TELP : ");
-        String noTelp = input.nextLine();
-        System.out.print("ALAMAT   : ");
-        String alamat = input.nextLine();
-        return new Penumpang(nama, noTelp, alamat);
+        System.out.println("\n=== DATA PENUMPANG ===");
+        System.out.println("DESTINASI: " + destinasi);
+        for (int i = 0; i < jumlahPenumpang; i++) {
+            System.out.println("\nPenumpang " + (i + 1));
+            System.out.println("Nama   : " + nama[i]);
+            System.out.println("NoTelp : " + noTelp[i]);
+            System.out.println("Alamat : " + alamat[i]);
+        }
     }
 }

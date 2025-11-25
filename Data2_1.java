@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
 public class Data2_1 {
-    // Program reimplementation of Data1_1 using arrays and methods
 
     static String[] judul = {
         "SUNRISE HUNTER BROMO",
@@ -11,101 +10,71 @@ public class Data2_1 {
     };
 
     static String[] deskripsi = {
-        "Nikmati keindahan matahari terbit keemasan dari puncak Pananjakan dengan latar belakang gagahnya Gunung Bromo, Batok, dan Semeru.",
-        "Jelajahi surga tersembunyi di pesisir selatan Malang. Dari pantai dengan pura di atas karang hingga pantai dengan ombak yang tenang.",
-        "Habiskan hari penuh tawa dan keseruan di Kota Batu! Pilih taman rekreasi favoritmu dan abadikan momen di spot-spot foto yang Instagramable.",
-        "Selami kekayaan budaya Jawa di kota Yogyakarta. Dari kemegahan candi kuno hingga keramaian jalan Malioboro yang legendaris."
+        "Melihat sunrise di Pananjakan dengan latar Bromo, Batok, dan Semeru.",
+        "Menjelajahi pantai-pantai indah di Malang Selatan.",
+        "Bermain dan berwisata di Kota Batu, termasuk Jatim Park.",
+        "Wisata budaya Jogja selama 3 hari 2 malam."
     };
 
     static String[] sarana = {
-        "- Penjemputan dari Malang (tengah malam).\n- Perjalanan dengan Jeep 4x4 menuju Pananjakan.\n- Menikmati momen matahari terbit (sunrise).\n- Turun ke lautan pasir dan mendaki kawah Bromo.\n- Mengunjungi Pasir Berbisik dan Bukit Teletubbies.",
-        "- Penjemputan dari Malang (pagi hari).\n- Mengunjungi Pantai Balekambang (Little Tanah Lot).\n- Mengunjungi Pantai Goa Cina.\n- Menikmati sunset sebelum kembali ke Malang.",
-        "- Penjemputan dari Malang.\n- Kunjungan ke theme park pilihan: Jatim Park 2 atau Jatim Park 3.\n- Mengunjungi Museum Angkut.\n- Singgah di Alun-Alun Kota Batu dan Pos Ketan Legenda.",
-        "- Hari 1: Perjalanan Malang - Jogja, check-in, wisata malam di Malioboro.\n- Hari 2: Mengunjungi Candi Borobudur, Keraton Yogyakarta, dan Taman Sari.\n- Hari 3: Belanja oleh-oleh, mengunjungi Candi Prambanan, kembali ke Malang."
+        "- Sunrise Pananjakan\n- Lautan pasir\n- Kawah Bromo",
+        "- Pantai Balekambang\n- Pantai Goa Cina",
+        "- Jatim Park\n- Museum Angkut\n- Alun-alun Kota Batu",
+        "- Malioboro\n- Borobudur\n- Prambanan"
     };
 
     static String[] harga = {
-        "Mulai dari Rp 350.000/orang",
-        "Mulai dari Rp 250.000/orang",
-        "Mulai dari Rp 300.000/orang",
-        "Mulai dari Rp 950.000/orang"
-    };
-
-    static String[] fasilitas = {
-        "Transportasi Jeep 4x4, Tiket masuk, Driver/Pemandu, Masker.",
-        "Transportasi AC (Mobil), Tiket masuk semua pantai, Driver, Air mineral.",
-        "Transportasi AC, Tiket masuk untuk 2 destinasi pilihan, Driver.",
-        "Transportasi Kereta Api/Travel, Akomodasi hotel 2 malam, Transportasi lokal, Tiket masuk wisata."
+        "Rp 350.000/orang",
+        "Rp 250.000/orang",
+        "Rp 300.000/orang",
+        "Rp 950.000/orang"
     };
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        boolean running = true;
+        int pilihan;
 
-        while (running) {
-            showMenu();
-            System.out.print("Masukkan pilihan anda : ");
-            int pil = -1;
-            if (input.hasNextInt()) {
-                pil = input.nextInt();
-                input.nextLine();
-            } else {
-                // consume invalid token
-                input.nextLine();
-            }
+        do {
+            tampilMenu();
+            System.out.print("Masukkan pilihan (0 untuk keluar): ");
+            pilihan = input.nextInt();
+            input.nextLine();
 
-            if (pil >= 1 && pil <= judul.length) {
-                showDetails(pil - 1);
-                // wait for Enter to proceed to confirmation
-                System.out.println();
-                boolean confirmed = confirmPurchase(input);
-                if (confirmed) {
-                    System.out.println("===== TERIMAKASIH TELAH MENGGUNAKAN FILKOM TRAVEL ;^) =====");
-                    running = false;
-                } else {
-                    // user chose not to confirm; continue loop
-                    running = true;
+            if (pilihan >= 1 && pilihan <= 4) {
+                tampilDetail(pilihan - 1);
+                if (konfirmasi(input)) {
+                    System.out.println("TERIMA KASIH TELAH MEMESAN!");
+                    break;
                 }
-            } else if (pil == 0) {
-                System.out.println("===== TERIMAKASIH TELAH MENGGUNAKAN FILKOM TRAVEL ;^) =====");
-                break;
-            } else {
-                System.out.println("PILIHAN TIDAK TERSEDIA");
+            } else if (pilihan != 0) {
+                System.out.println("Pilihan tidak tersedia.\n");
             }
-        }
 
+        } while (pilihan != 0);
+
+        System.out.println("=== TERIMA KASIH TELAH MENGGUNAKAN FILKOM TRAVEL ===");
         input.close();
     }
 
-    static void showMenu() {
-        System.out.println("Menu : ");
+    static void tampilMenu() {
+        System.out.println("=== MENU TRAVEL ===");
         for (int i = 0; i < judul.length; i++) {
-            System.out.println((i + 1) + " : " + judul[i]);
+            System.out.println((i + 1) + ". " + judul[i]);
         }
-        System.out.println("0 : keluar");
+        System.out.println("0. Keluar");
     }
 
-    static void showDetails(int index) {
-        System.out.println("\n--- DETAIL PAKET: " + judul[index] + " ---");
-        System.out.println("Deskripsi: " + deskripsi[index]);
-        System.out.println("\nItinerary/Aktivitas:");
-        System.out.println(sarana[index]);
-        System.out.println("\nHarga: " + harga[index]);
-        System.out.println("\nFasilitas: " + fasilitas[index]);
+    static void tampilDetail(int i) {
+        System.out.println("\n=== DETAIL PAKET ===");
+        System.out.println("Judul     : " + judul[i]);
+        System.out.println("Deskripsi : " + deskripsi[i]);
+        System.out.println("\nItinerary :\n" + sarana[i]);
+        System.out.println("\nHarga     : " + harga[i] + "\n");
     }
 
-    static boolean confirmPurchase(Scanner input) {
-        String cek = "";
-        do {
-            System.out.print("Apakah kamu yakin ?(Y/n) : ");
-            cek = input.nextLine();
-            if (cek.equalsIgnoreCase("Y")) {
-                return true;
-            } else if (cek.equalsIgnoreCase("n")) {
-                return false;
-            } else {
-                System.out.println("MASUKAN ANDA TIDAK VALID");
-            }
-        } while (true);
+    static boolean konfirmasi(Scanner input) {
+        System.out.print("Lanjut pesan? (Y/n) : ");
+        String jawab = input.nextLine();
+        return jawab.equalsIgnoreCase("Y");
     }
 }
